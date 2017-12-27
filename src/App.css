@@ -1,0 +1,32 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* text-align: center;
+  display: flex;
+  flex-flow: column; */
+}
+
+.full-screen {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

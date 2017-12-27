@@ -1,0 +1,18 @@
+html,
+body {
+  height: 100%;
+  margin: 0
+}
+
+body {
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  height: 100%;
+}

@@ -1,0 +1,56 @@
+#channel-detail {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex: 1;
+  overflow: scroll;
+}
+
+.channel-header {
+  flex: 0 80px;
+  /* height: 80px; */
+  border-bottom: 1px solid darkgray;
+  flex-shrink: 0;
+}
+
+.channel-messages {
+  flex-grow: 1;
+  overflow: auto;
+  align-items: flex-start;
+  /* background-color: burlywood; */
+}
+
+.channel-input {
+  flex: 0 60px;
+  /* height: 60px; */
+  flex-shrink: 0;
+  /* background-color: darkorchid; */
+  display: flex;
+}
+
+.channel-input input {
+  flex: 1 100%;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.user-avatar {
+  flex: 0 0 auto;
+  width: 110px;
+}
+
+.message-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding-left: 10px;
+}
+.message-text h3 {
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}

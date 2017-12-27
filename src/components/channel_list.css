@@ -1,0 +1,8 @@
+#channel-list {
+  overflow: scroll;
+  width: 300px;
+  /* flex: 0 300px; */
+  background-color: darkgray;
+  border-right: 2px solid black;
+
+}
