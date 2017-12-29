@@ -20,18 +20,6 @@
   /* background-color: burlywood; */
 }
 
-.channel-input {
-  flex: 0 60px;
-  /* height: 60px; */
-  flex-shrink: 0;
-  /* background-color: darkorchid; */
-  display: flex;
-}
-
-.channel-input input {
-  flex: 1 100%;
-}
-
 .message {
   display: flex;
   margin-bottom: 10px;

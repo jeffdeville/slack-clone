@@ -1,118 +1,23 @@
 import React from "react";
+import ChannelMessage from './channel_message'
+import CreateMessage from './create_message'
 import "./channel_detail.css"
 
+
 const ChannelDetail = props => {
+  const { name, messages } = props.channel
+  const messageHTML = messages.map((message) => <ChannelMessage key={message.id} message={message} />)
   return (
     <div id="channel-detail">
-      <div class="channel-header">
-        <h1>Channel 1</h1>
+      <div className="channel-header">
+        <h1>{ name }</h1>
       </div>
-      <ul class="channel-messages">
-        <li class="message">
-          <img
-            src="https://randomuser.me/api/portraits/men/17.jpg"
-            class="user-avatar"
-          />
-          <div class="message-text">
-            <h3>Person's Name</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo est, dignissim a tincidunt dictum, sagittis et
-              lectus.{" "}
-            </p>
-          </div>
-        </li>
-        <li class="message">
-          <img
-            src="https://randomuser.me/api/portraits/men/17.jpg"
-            class="user-avatar"
-          />
-          <div class="message-text">
-            <h3>Person's Name</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo est, dignissim a tincidunt dictum, sagittis et
-              lectus.{" "}
-            </p>
-          </div>
-        </li>
-        <li class="message">
-          <img
-            src="https://randomuser.me/api/portraits/men/17.jpg"
-            class="user-avatar"
-          />
-          <div class="message-text">
-            <h3>Person's Name</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo est, dignissim a tincidunt dictum, sagittis et
-              lectus.{" "}
-            </p>
-          </div>
-        </li>
-        <li class="message">
-          <img
-            src="https://randomuser.me/api/portraits/men/17.jpg"
-            class="user-avatar"
-          />
-          <div class="message-text">
-            <h3>Person's Name</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo est, dignissim a tincidunt dictum, sagittis et
-              lectus.{" "}
-            </p>
-          </div>
-        </li>
-        <li class="message">
-          <img
-            src="https://randomuser.me/api/portraits/men/17.jpg"
-            class="user-avatar"
-          />
-          <div class="message-text">
-            <h3>Person's Name</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo est, dignissim a tincidunt dictum, sagittis et
-              lectus.{" "}
-            </p>
-          </div>
-        </li>
-        <li class="message">
-          <img
-            src="https://randomuser.me/api/portraits/men/17.jpg"
-            class="user-avatar"
-          />
-          <div class="message-text">
-            <h3>Person's Name</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo est, dignissim a tincidunt dictum, sagittis et
-              lectus.{" "}
-            </p>
-          </div>
-        </li>
-        <li class="message">
-          <img
-            src="https://randomuser.me/api/portraits/men/17.jpg"
-            class="user-avatar"
-          />
-          <div class="message-text">
-            <h3>Person's Name</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse leo est, dignissim a tincidunt dictum, sagittis et
-              lectus.{" "}
-            </p>
-          </div>
-        </li>
+      <ul className="channel-messages">
+        { messageHTML }
       </ul>
-      <div class="channel-input">
-        <input type="text" />
-        <button>Submit</button>
-      </div>
+      <CreateMessage addMessage={props.addMessage} />
     </div>
-  );
-};
+  )
+}
 
 export default ChannelDetail;

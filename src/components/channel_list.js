@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './channel_list.css'
 
-const ChannelList = (props) => {
-  return (
-    <ul id="channel-list">
-      <li>Here is the channel List</li>
-      <li>Here is the channel List</li>
-      <li>Here is the channel List</li>
-      <li>Here is the channel List</li>
-    </ul>
-  )
-}
+export default class ChannelList extends Component {
+  renderList() {
+    return this.props.channels.map((channel) => {
+      return (
+        <li key={channel.name}>
+          <a onClick={() => this.props.selectChannel(channel)}>{channel.name}</a>
+        </li>
+      )
+    })
+  }
 
-export default ChannelList
+  render() {
+    return (
+      <ul id="channel-list">
+        { this.renderList() }
+      </ul>
+    )
+  }
+}
