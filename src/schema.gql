@@ -1,0 +1,47 @@
+type Channel {
+	id: ID!
+	name: String!
+	messages: [Message]
+}
+
+type Message {
+	id: ID!
+	content: String!
+	user: User
+}
+
+type Mutation {
+	addMessage(user_id: ID!, channel_id: ID!, content: String): Message!
+	addChannel(name: String): Channel!
+	#Put a single value of type 'Channel'.
+	### If an item exists it's updated. If it does not it's created.
+	putChannel(id: ID!, name: String!): Channel
+	#Delete a single value of type 'Channel' by a primary key.
+	deleteChannel(id: ID!): Channel
+}
+
+type Query {
+	allChannels: [Channel]
+	getMessages: [Message]
+	#Get a single value of type 'Channel' by primary key.
+	getChannel(id: ID!): Channel
+}
+
+type Subscription {
+	addedMessage: Message
+		@aws_subscribe(mutations: ["addMessage"])
+	addedChanne: Channel
+		@aws_subscribe(mutations: ["addChannel"])
+}
+
+type User {
+	id: ID!
+	name: String!
+	profile: String!
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}
