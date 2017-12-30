@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import appSyncConfig from './AppSync'
 import { ApolloProvider } from 'react-apollo'
 import AWSAppSyncClient from 'aws-appsync'
@@ -21,9 +21,9 @@ const client = new AWSAppSyncClient({
   }
 })
 
-console.log(appSyncConfig)
-console.log(client)
-
+const NoChannel = () => (
+  <h2>No Channel Selected</h2>
+)
 class App extends Component {
   render() {
     return (
@@ -31,10 +31,13 @@ class App extends Component {
         <Rehydrated>
           <div className="App full-screen">
             <Navbar logo={logo} />
-            <div className="main">
-              <ChannelList />
-              <ChannelDetail />
-            </div>
+            <Router>
+              <div className="main">
+                <ChannelList />
+                <Route exact={true} path="/" component={NoChannel} />
+                <Route path="/channels/:id" component={ChannelDetail} />
+              </div>
+            </Router>
           </div>
         </Rehydrated>
       </ApolloProvider>
