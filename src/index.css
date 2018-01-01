@@ -1,5 +1,6 @@
 html,
-body {
+body,
+.awsappsync {
   height: 100%;
   margin: 0
 }
