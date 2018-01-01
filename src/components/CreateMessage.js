@@ -1,22 +1,33 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import { v4 as uuid } from 'uuid'
+
+import PutMessage from '../Queries/PutMessage'
+import GetChannel from '../Queries/GetChannel'
 import './CreateMessage.css'
 
-export default class CreateMessage extends Component {
+class CreateMessage extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { message: '' }
+    this.state = { content: '' }
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onTextChange = this.onTextChange.bind(this)
   }
 
   onTextChange(event) {
-    this.setState({ message: event.target.value })
+    this.setState({ content: event.target.value })
   }
 
   onFormSubmit(event) {
     event.preventDefault()
-    this.props.addMessage(this.state.message)
+    // TODO: Optimistic update?  Not here, because I'd
+    // then have to make the link work too.
+    this.props.mutate({
+      variables: { content: this.state.content, messageId: uuid(), channelId: "1" },
+      refetchQueries: [{ query: GetChannel, variables: { id: "1"} }]
+    }).then(() => this.setState({ content: '' }))
+    .catch(error => console.log(error))
   }
 
   render() {
@@ -26,7 +37,7 @@ export default class CreateMessage extends Component {
           type="text"
           className="form-control"
           onChange={ this.onTextChange }
-          value={ this.state.value }
+          value={ this.state.content }
           />
         <span className="input-group-btn">
           <button className="btn btn-primary">Submit</button>
@@ -35,3 +46,5 @@ export default class CreateMessage extends Component {
     )
   }
 }
+
+export default graphql(PutMessage)(CreateMessage)

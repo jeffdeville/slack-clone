@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { v4 as uuid } from 'uuid'
 
-import MutationCreateChannel from '../Queries/MutationCreateChannel'
+import PutChannel from '../Queries/PutChannel'
 import AllChannels from '../Queries/AllChannels';
 
 class CreateChannel extends Component {
@@ -46,4 +46,4 @@ class CreateChannel extends Component {
   }
 }
 
-export default graphql(MutationCreateChannel)(CreateChannel)
+export default graphql(PutChannel)(CreateChannel)
