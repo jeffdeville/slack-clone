@@ -3,3 +3,9 @@
   width: 300px;
   /* flex: 0 300px; */
 }
+
+.channel-list-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
