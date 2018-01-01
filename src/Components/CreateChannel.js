@@ -32,8 +32,7 @@ class CreateChannel extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit} className="form-group">
-        <label htmlFor="newChannel">Create Channel</label>
+      <form onSubmit={this.onSubmit} className="input-group">
         <input
           className="form-control"
           type="text"
@@ -41,6 +40,9 @@ class CreateChannel extends Component {
           placeholder="Name Your Channel"
           value={this.state.newChannel}
           onChange={this.onChange} />
+        <span className="input-group-btn">
+          <button className="btn btn-primary">Submit</button>
+        </span>
       </form>
     )
   }

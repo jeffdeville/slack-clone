@@ -4,7 +4,7 @@ import './Navbar.css'
 const Navbar = (props) => {
   return (
     <header>
-      This is the title
+      <h1>Slack Clone</h1>
     </header>
   )
 }

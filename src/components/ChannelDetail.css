@@ -4,6 +4,7 @@
   flex-direction: column;
   flex: 1;
   overflow: scroll;
+  margin-left: 10px;
 }
 
 .channel-header {

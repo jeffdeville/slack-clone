@@ -21,8 +21,7 @@ class CreateMessage extends Component {
 
   onFormSubmit(event) {
     event.preventDefault()
-    // TODO: Optimistic update?  Not here, because I'd
-    // then have to make the link work too.
+    // TODO: Implement an optimistic update
     this.props.mutate({
       variables: { content: this.state.content, messageId: uuid(), channelId: "1" },
       refetchQueries: [{ query: GetChannel, variables: { id: "1"} }]
@@ -36,6 +35,7 @@ class CreateMessage extends Component {
         <input
           type="text"
           className="form-control"
+          placeholder="Message..."
           onChange={ this.onTextChange }
           value={ this.state.content }
           />
