@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { v4 as uuid } from 'uuid'
 
-import PutMessage from '../Queries/PutMessage'
-import GetChannel from '../Queries/GetChannel'
+import PutMessage from '../GraphQL/PutMessage'
+import GetChannel from '../GraphQL/GetChannel'
 import './CreateMessage.css'
 
 class CreateMessage extends Component {
@@ -23,8 +23,8 @@ class CreateMessage extends Component {
     event.preventDefault()
     // TODO: Implement an optimistic update
     this.props.mutate({
-      variables: { content: this.state.content, messageId: uuid(), channelId: "1" },
-      refetchQueries: [{ query: GetChannel, variables: { id: "1"} }]
+      variables: { content: this.state.content, messageId: uuid(), channelId: this.props.channelId },
+      refetchQueries: [{ query: GetChannel, variables: { id: this.props.channelId} }]
     }).then(() => this.setState({ content: '' }))
     .catch(error => console.log(error))
   }

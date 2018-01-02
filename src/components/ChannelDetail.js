@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from 'react-apollo'
 
-import GetChannel from '../Queries/GetChannel'
+import GetChannel from '../GraphQL/GetChannel'
 import ChannelMessage from './ChannelMessage'
 import CreateMessage from './CreateMessage'
 import "./ChannelDetail.css"
@@ -15,7 +15,6 @@ class ChannelDetail extends Component {
     const messageHTML = messages.map((message) => {
       return <ChannelMessage key={ message.messageId } message={message} />
     })
-
     return (
       <div id="channel-detail">
         <div className="channel-header">
@@ -24,7 +23,7 @@ class ChannelDetail extends Component {
         <ul className="channel-messages">
           { messageHTML }
         </ul>
-        <CreateMessage addMessage={this.props.addMessage} />
+        <CreateMessage channelId={this.props.match.params.id} />
       </div>
     )
   }
