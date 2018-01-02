@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { v4 as uuid } from 'uuid'
 
-import PutChannel from '../Queries/PutChannel'
-import AllChannels from '../Queries/AllChannels';
+import PutChannel from '../GraphQL/PutChannel'
+import AllChannels from '../GraphQL/AllChannels';
 
 class CreateChannel extends Component {
   constructor(props) {
