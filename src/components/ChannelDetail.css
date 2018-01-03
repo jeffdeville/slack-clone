@@ -18,7 +18,6 @@
   flex-grow: 1;
   overflow: scroll;
   align-items: flex-start;
-  /* background-color: burlywood; */
 }
 
 .message {
