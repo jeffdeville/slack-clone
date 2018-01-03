@@ -16,7 +16,7 @@
 
 .channel-messages {
   flex-grow: 1;
-  overflow: auto;
+  overflow: scroll;
   align-items: flex-start;
   /* background-color: burlywood; */
 }
