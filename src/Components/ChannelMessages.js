@@ -56,7 +56,7 @@ export default graphql(QueryGetChannelMessages, {
               channelId: props.ownProps.channelId
             },
             updateQuery: ((prev, updated) => {
-              console.log(["I win again", prev, updated])
+              console.log(["Victory is mine", prev, updated])
               return prev
             })
           })
