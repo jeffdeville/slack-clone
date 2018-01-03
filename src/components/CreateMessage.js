@@ -4,7 +4,6 @@ import { v4 as uuid } from 'uuid'
 
 import PutMessage from '../GraphQL/PutMessage'
 import GetChannel from '../GraphQL/GetChannel'
-import './CreateMessage.css'
 
 class CreateMessage extends Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class CreateMessage extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit} className="input-group channel-input">
+      <form onSubmit={this.onFormSubmit} className="input-group channel-input bottom-form">
         <input
           type="text"
           className="form-control"

@@ -32,7 +32,7 @@ class CreateChannel extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit} className="input-group">
+      <form onSubmit={this.onSubmit} className="input-group bottom-form">
         <input
           className="form-control"
           type="text"
