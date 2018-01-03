@@ -1,14 +1,28 @@
-#channel-list {
-  overflow: scroll;
+#channel-nav-pane {
+  height: 100%;
   width: 300px;
-}
-
-.channel-list-panel {
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   justify-content: space-between;
 }
 
+#channel-list-and-title {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+}
+
+#channel-list {
+  overflow: scroll;
+  flex: 1;
+}
+
 .active {
   background-color: yellow;
+}
+
+.channel-input {
+  flex: 0;
 }

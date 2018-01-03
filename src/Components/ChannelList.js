@@ -15,7 +15,6 @@ class ChannelList extends Component {
       this.unsubscribe = nextProps.data.subscribeToMore({
         document: SubscriptionNewChannel,
         updateQuery: (prev, { subscriptionData: { data: { putChannel } } }) => {
-          // This will only work for putChannel, not deleteChannel
           return Object.assign({}, prev, {
             allChannels: [
               ...prev.allChannels.filter(({id}) => {
@@ -46,8 +45,8 @@ class ChannelList extends Component {
       return <div></div>
     }
     return (
-      <div className="channel-list-panel">
-        <div>
+      <div id="channel-nav-pane">
+        <div id="channel-list-and-title">
           <h1>Channels</h1>
           <ul id="channel-list" className="list-unstyled">
             { this.renderList(this.props.channelId) }
