@@ -1,9 +1,10 @@
 import gql from 'graphql-tag'
 
 export default gql`
-subscription NewMessage {
-  putMessage {
+subscription SubscribeToChannelMessages($channelId: ID!) {
+  subscribeToChannelMessages(channelId: $channelId) {
     __typename
+    channelId
     messageId
     content
   }

@@ -11,27 +11,31 @@ class ChannelList extends Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.data.loading) {
       if (this.unsubscribe) { return }
+
+      this.unsubscribe = nextProps.data.subscribeToMore({
+        document: SubscriptionNewChannel,
+        updateQuery: (prev, { subscriptionData: { data: { putChannel } } }) => {
+          // This will only work for putChannel, not deleteChannel
+          return Object.assign({}, prev, {
+            allChannels: [
+              ...prev.allChannels.filter(({id}) => {
+                return id !== putChannel.id
+              }),
+              putChannel
+            ]
+          })
+        }
+      })
     }
-    this.unsubscribe = nextProps.data.subscribeToMore({
-      document: SubscriptionNewChannel,
-      updateQuery: (prev, { subscriptionData: { data: { putChannel } } }) => {
-        return Object.assign({}, prev, {
-          allChannels: [
-            ...prev.allChannels.filter(({id}) => {
-              return id !== putChannel.id
-            }),
-            putChannel
-          ]
-        })
-      }
-    })
   }
 
-  renderList() {
+  renderList(channelId) {
     return this.props.data.allChannels.map((channel) => {
+      const linkClass = channelId === channel.id ? 'active' : ''
+
       return (
-        <li key={channel.id} className="list-group-item">
-          <Link to={`/channels/${channel.id}`}>{channel.name}</Link>
+        <li key={channel.id}>
+          <Link to={`/channels/${channel.id}`} className={ linkClass } >{channel.name}</Link>
         </li>
       )
     })
@@ -43,9 +47,12 @@ class ChannelList extends Component {
     }
     return (
       <div className="channel-list-panel">
-        <ul id="channel-list" className="list-group">
-          { this.renderList() }
-        </ul>
+        <div>
+          <h1>Channels</h1>
+          <ul id="channel-list" className="list-unstyled">
+            { this.renderList(this.props.channelId) }
+          </ul>
+        </div>
         <CreateChannel />
       </div>
     )
