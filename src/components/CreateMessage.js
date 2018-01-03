@@ -21,6 +21,7 @@ class CreateMessage extends Component {
   onFormSubmit(event) {
     event.preventDefault()
     // TODO: Implement an optimistic update
+    console.log("Creating a message")
     this.props.mutate({
       variables: { content: this.state.content, messageId: uuid(), channelId: this.props.channelId },
       refetchQueries: [{ query: GetChannel, variables: { id: this.props.channelId} }]

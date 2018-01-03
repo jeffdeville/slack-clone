@@ -6,11 +6,6 @@ query GetChannel($id: ID!){
     id
     name
     __typename
-    messages {
-      __typename
-      messageId
-      content
-    }
   }
 }
 `

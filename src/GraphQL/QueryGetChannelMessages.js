@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  subscription($channelId: String!) {
-    subscribeToChannelMessages(channelId: $channelId) {
+  query GetChannelMessages($channelId: ID!) {
+    getChannelMessages(channelId: $channelId) {
       __typename
       channelId
       messageId
