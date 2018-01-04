@@ -7,6 +7,9 @@ export default gql`
       channelId
       messageId
       content
+      nickname
+      email
+      picture
     }
   }
 `;

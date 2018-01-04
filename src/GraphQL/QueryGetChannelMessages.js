@@ -8,6 +8,9 @@ export default gql`
       messageId
       content
       createdAt
+      nickname
+      email
+      picture
     }
   }
 `;

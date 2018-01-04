@@ -20,7 +20,7 @@
   align-items: flex-start;
 }
 
-.message {
+.message-container {
   display: flex;
   margin-bottom: 10px;
 }
@@ -41,4 +41,20 @@
   margin-top: 0px;
   padding-bottom: 0px;
   margin-bottom: 0px;
+  font-size: 1.1em;
+}
+
+.message-text h3 small{
+  margin-left: 10px;
+  color: dimgray;
+}
+
+.message-text p {
+  font-size: 0.9em;
+
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
 }

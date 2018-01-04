@@ -8,5 +8,8 @@ mutation PutMessage($channelId: ID!, $messageId: ID!, $content: String!, $create
     channelId
     content
     createdAt
+    nickname
+    email
+    picture
   }
 }`
