@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "amazon-cognito-identity-js": "^1.29.0",
+    "amazon-cognito-auth-js": "^1.1.1",
     "aws-appsync": "^1.0.4",
     "aws-appsync-react": "^1.0.4",
     "bootstrap": "^4.0.0-beta.2",
