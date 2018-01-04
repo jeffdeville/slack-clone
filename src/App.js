@@ -13,7 +13,6 @@ import { Rehydrated } from 'aws-appsync-react'
 // My code
 import './App.css';
 import Login from './Components/Login'
-import LoginCallback from './Components/LoginCallback'
 import ChannelList from './Components/ChannelList'
 import ChannelDetail from './Components/ChannelDetail'
 
@@ -27,7 +26,7 @@ var auth = new CognitoAuth(appSyncConfig)
 auth.useCodeGrantFlow()
 auth.userhandler = {
   onSuccess: (result) => {
-    console.log(['Success', result])
+    // console.log(['Success', result])
     jwtToken = result.idToken.jwtToken
   },
   onFailure: (err) => console.log(['Error', err])
@@ -35,16 +34,16 @@ auth.userhandler = {
 var jwtToken = ''
 const code = new URLSearchParams(window.location.search.slice(1)).get('code')
 if (code) {
-  console.log(`Code: ${code}`)
+  // console.log(`Code: ${code}`)
   auth.getCodeQueryParameter(window.location.toString())
 } else {
-  console.log('Logging in')
+  // console.log('Logging in')
   auth.getSession()
 }
 // With code, swap code for token
 // Get jwt
 // set jwt in client
-console.log(["Setting the client", { jwtToken }])
+// console.log(["Setting the client", { jwtToken }])
 
 const client = new AWSAppSyncClient({
   url: appSyncConfig.graphqlEndpoint,
