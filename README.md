@@ -1,54 +1,40 @@
-# Free writing
-
-# Topics
-
-* What the project does
-* What technologies it uses
-
-  * FlexBox
-* Why GraphQL instead of REST
-* Serverless Pros
-* Serverless Cons
-
 # Intro
 
 Aside from meeting the interview requirements, my goal with this project was to get some familiarity with the direction web applications appears to be heading in 2018. I will try and highlight the choices I made and why here.
 
-# Technologies
+# UI
 
-## UI
-
-### FlexBox
+## FlexBox
 
 I'm relatively proficient in Bootstrap, and have played with a number of theme frameworks lately, but trying to mimic the Slack layout isn't something that non-flexbox CSS is any good at. So I figured it was time to finally learn. While the syntax is a little obtuse, it was overall a pleasant experience. CodeSchool's FlexBox course was helpful
 
-## Front End
+# Front End
 
-### React
+## React
 
 To be honest, I don't especially like React. I've played w/ Angular 4 and done some small work with VueJS recently, and I liked both of them more than React. I chose React because it's what seems to have the most traction. That said, I expect it to lose tremendous steam in the next 2 years, to be replaced by languages and tools that compile directly into WebAssembly.
 
-### GraphQL
+## GraphQL
 
-First, I apologize because I know I was supposed to create a RESTful API. Certainly for this use case, REST would have been more than adequate for the data usage patterns. I chose GraphQL because my last React project was VERY poorly served by its RESTful API, and I've been curious how effective GraphQL would be at solving those problems. Also, I've created RESTful APIs for at least 10 years now. I'm sure I can dig up a code sample for that if you'd just like to see one.
+First, I apologize because I know I was supposed to create a RESTful API. Certainly for this use case, REST would have been more than adequate for the data usage patterns. I chose GraphQL because my last React project was VERY poorly served by its RESTful API, and I've been curious how effective GraphQL would be at solving the problems from that last project. Also, I've created RESTful APIs for at least 10 years now. I'm sure I can dig up a code sample for that if you'd just like to see one.
 
 In the end, I was pleasantly surprised with GraphQL for the following reasons:
 
-a) A single schema that can be used on client and server promotes consistency.
-b) Typed data, and methods
-c) Flexibility to sculpt the data for your UI. Web apps usually wind up bastardizing REST apis for the sake of app efficiency anyway
-d) A mechanism for data subscriptions is baked in
-e) The Apollo framework offers a cohesive solution to data management locally. I've seen a lot of tools/libraries in the JS world that intentionally do not offer a complete solution. Much of the app involves gluing the same things together over and over. Apollo handles data queries, validation, mutation, subscriptions, caching, offline access, optimistic updates etc.
+* A single schema that can be used on client and server promotes consistency.
+* Typed data, and methods
+* Flexibility to sculpt the data for your UI. Web apps usually wind up bastardizing REST apis for the sake of app efficiency anyway
+* A mechanism for data subscriptions is baked in
+* The Apollo framework offers a cohesive solution to data management locally. I've seen a lot of tools/libraries in the JS world that intentionally do not offer a complete solution. Much of the app involves gluing the same things together over and over. Apollo handles data queries, validation, mutation, subscriptions, caching, offline access, optimistic updates etc.
 
-## Serverless Backend w/ AWS
+# Serverless Backend w/ AWS
 
 There are 2 trends I've been observing in the backend infrastructure world. Teams are either Dockerizing (and Kube-ing) their services, or they're skipping containers entirely, and going to serverless architectures based on small, stateless, functional components. The latter is pretty new, but this feels analogous to the Elixir/Erlang OTP model, which I've done some work in. And I'd also contributed to a [Serverless](https://serverless.com) project. For applications where the 'work' is largely in managing data streams, which is often the case when your UI is client-side, this has felt like a fairly natural fit.
 
-So I decided to try and go with no backend architecture here. The socket-based subscription requirement nearly torpedoed me here, but AWS has a GraphQL service called AppSync that provides subscription updates.
+So I decided to try and go with no backend architecture here. The socket-based subscription requirement nearly torpedoed me here, but AWS has a GraphQL service called AppSync that provides subscription updates through MQTT.
 
 ## AppSync
 
-AppSync is a preview service that lets you lego together a GraphQL backend using DynamoDB, Lambda, and ElasticSearch. For this project, only DynamoDB was needed.
+AppSync is a preview service that lets you lego together a GraphQL backend using DynamoDB, Lambda, ElasticSearch, IAM, and Cognito. For this project, only DynamoDB and Cognito were needed.
 
 **Pros:**
 
