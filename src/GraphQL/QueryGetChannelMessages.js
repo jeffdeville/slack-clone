@@ -7,6 +7,7 @@ export default gql`
       channelId
       messageId
       content
+      createdAt
     }
   }
 `;

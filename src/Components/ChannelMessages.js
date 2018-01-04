@@ -18,10 +18,9 @@ class ChannelMessages extends Component {
   render() {
     const { loading, messages } = this.props
     if (loading) { return <div></div> }
-
-    const messageHTML = messages.map(message => {
-      return <ChannelMessage key={message.messageId} message={message} />;
-    });
+    const messageHTML = [].concat(messages)
+      .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
+      .map(message => <ChannelMessage key={message.messageId} message={message} />)
 
     return <ul className="channel-messages">{messageHTML}</ul>;
   }

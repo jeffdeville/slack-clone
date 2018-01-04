@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { v4 as uuid } from 'uuid'
+import moment from 'moment'
 
 import PutMessage from '../GraphQL/PutMessage'
 import QueryGetChannelMessages from "../GraphQL/QueryGetChannelMessages";
@@ -26,7 +27,8 @@ class CreateMessage extends Component {
         variables: {
           content: this.state.content,
           messageId: uuid(),
-          channelId: this.props.channelId
+          channelId: this.props.channelId,
+          createdAt: moment.utc().format(),
         },
         refetchQueries: [
           {

@@ -8,17 +8,23 @@ type Message {
 	channelId: ID!
 	messageId: ID!
 	content: String!
+	createdAt: String!
 }
 
 type Mutation {
 	#Put a single value of type 'Channel'.
-	################# If an item exists it's updated. If it does not it's created.
+	################### If an item exists it's updated. If it does not it's created.
 	putChannel(id: ID!, name: String!): Channel
 	#Delete a single value of type 'Channel' by a primary key.
 	deleteChannel(id: ID!): Channel
 	#Put a single value of type 'Message'.
-	############### If an item exists it's updated. If it does not it's created.
-	putMessage(channelId: ID!, messageId: ID!, content: String!): Message
+	################# If an item exists it's updated. If it does not it's created.
+	putMessage(
+		channelId: ID!,
+		messageId: ID!,
+		content: String!,
+		createdAt: String!
+	): Message
 	#Delete a single value of type 'Message' by a primary key.
 	deleteMessage(channelId: ID!, id: ID!): Message
 }
