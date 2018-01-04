@@ -12,7 +12,6 @@ class ChannelDetail extends Component {
     if (this.props.loading) {
       return <div></div>
     }
-    console.log('ChannelDetails', this.props)
     const { name } = this.props
     const channelId = this.props.match.params.id
     return (
@@ -32,9 +31,18 @@ export default graphql(GetChannel, {
   options: ({ match: { params: { id } } }) => ({
     variables: { id }
   }),
-  props: props => ({
-    loading: props.data.loading,
-    name: props.data.getChannel.name
-  })
+  props: props => {
+    if (props.data.loading) {
+      return {
+        loading: true,
+        name: ''
+      }
+    } else {
+      return {
+        loading: props.data.loading,
+        name: props.data.getChannel.name
+      }
+    }
+  }
 })(ChannelDetail)
 

@@ -8,12 +8,11 @@ class ChannelMessages extends Component {
   subscription;
 
   componentDidMount() {
-    console.log("Subscribing to message");
     this.subscription = this.props.subscribeToMessages();
   }
 
   componentWillUnmount() {
-    this.subscribeToMessages();
+    this.subscription()
   }
 
   render() {
@@ -39,25 +38,20 @@ export default graphql(QueryGetChannelMessages, {
         subscribeToMessages: () => { }
       }
     } else {
-      console.log(props)
       return {
         messages: props.data.getChannelMessages,
         loading: props.data.loading,
         subscribeToMessages: () => {
-          console.log("SubToMessagesParams", {
-            document: SubscriptionNewMessage,
-            variables: {
-              channelId: props.ownProps.channelId
-            }
-          })
           return props.data.subscribeToMore({
             document: SubscriptionNewMessage,
-            variables: {
-              channelId: props.ownProps.channelId
-            },
-            updateQuery: ((prev, updated) => {
-              console.log(["Victory is mine", prev, updated])
-              return prev
+            variables: { channelId: props.ownProps.channelId },
+            updateQuery: ((prev, { subscriptionData: { data: { subscribeToChannelMessages: newMessage } } }) => {
+              return {
+                getChannelMessages: [
+                  ...prev.getChannelMessages.filter(({ messageId }) => messageId !== newMessage.messageId),
+                  newMessage
+                ]
+              }
             })
           })
         }
